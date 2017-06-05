@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Department.DAL.DB;
 using Entities;
 
@@ -32,6 +29,29 @@ namespace DAL.Abonents
 		{
 			if (e.CurrentState == ConnectionState.Broken)
 				InitConnection();
+		}
+
+		public IEnumerable<Abonent> GetList()
+		{
+			using (_cmd = _connection.CreateCommand())
+			{
+				_cmd.CommandText = "SELECT * FROM Abonent";
+				using (_reader = _cmd.ExecuteReader())
+				{
+					while (_reader.Read())
+					{
+						yield return new Abonent
+						{
+							Code = (int)_reader["AbonentCode"],
+							AddressCode = (int)_reader["ClientAdress"],
+							FirstName = (string)_reader["FirstName"],
+							LastName = (string)_reader["SecondName"],
+							MidName = (string)_reader["Patronymic"],
+							BirthDate = (DateTime)_reader["BirthDay"]
+						};
+					}
+				}
+			}
 		}
 
 		public int Add(Abonent abonent)
@@ -65,75 +85,38 @@ namespace DAL.Abonents
 		{
 			using (_cmd = _connection.CreateCommand())
 			{
-				_cmd.CommandText = "UPDATE Users SET FirstName=@firstName, " +
-					"LastName=@lastName, BirthDate=@birthDate " +
-					"WHERE UserID = @userId; " +
-					"DELETE FROM Rewardings WHERE UserID = @userId;";
+				_cmd.CommandText = "UPDATE Abonent SET ClientAdress=@addressCode, " +
+				                   "SecondName=@lastname, FirstName=@firstname, " +
+				                   "Patronymic=@midname, BirthDay=@birthdate " +
+				                   "WHERE AbonentCode = @code;";
 
-				_cmd.Parameters.Add("@firstName", SqlDbType.NVarChar, 50).Value = editAbonent.FirstName;
-				_cmd.Parameters.Add("@lastName", SqlDbType.NVarChar, 50).Value = editAbonent.LastName;
-				_cmd.Parameters.Add("@birthDate", SqlDbType.DateTime).Value = editAbonent.BirthDate;
-				_cmd.Parameters.Add("@userId", SqlDbType.Int).Value = editAbonent.Code;
+				_cmd.Parameters.Add(new SqlParameter("@addressCode", SqlDbType.Int)).Value = editAbonent.AddressCode;
+				_cmd.Parameters.Add(new SqlParameter("@lastname", SqlDbType.NVarChar, 100)).Value = editAbonent.LastName;
+				_cmd.Parameters.Add(new SqlParameter("@firstname", SqlDbType.NVarChar, 100)).Value = editAbonent.FirstName;
+				_cmd.Parameters.Add(new SqlParameter("@midname", SqlDbType.NVarChar, 100)).Value = editAbonent.MidName;
+				_cmd.Parameters.Add(new SqlParameter("@birthdate", SqlDbType.DateTime)).Value = editAbonent.BirthDate;
+				_cmd.Parameters.Add(new SqlParameter("@code", SqlDbType.Int)).Value = editAbonent.Code;
 
 				_cmd.Prepare();
-
-				var result_1 = _cmd.ExecuteNonQuery();
-				var result_2 = _cmd.ExecuteNonQuery();
+				_cmd.ExecuteNonQuery();
 			}
+		}
+
+		public void Remove(int code)
+		{
+			using (_cmd = _connection.CreateCommand())
+			{
+				_cmd.CommandText = "DELETE FROM Abonent WHERE AbonentCode = @code;";
+				_cmd.Parameters.Add("@code", SqlDbType.Int).Value = code;
+				_cmd.ExecuteNonQuery();
+			}
+		}
+
+		public void Remove(Abonent abonent)
+		{
+			Remove(abonent.Code);
 		}
 		
-
-		public void Remove(Abonent user)
-		{
-			using (_cmd = _connection.CreateCommand())
-			{
-				_cmd.CommandText = String.Format("DELETE FROM Rewardings WHERE UserID = @userId;" +
-					"DELETE FROM Users WHERE UserID = @userId;");
-				_cmd.Parameters.Add("@userId", SqlDbType.Int).Value = user.Code;
-				var result_1 = _cmd.ExecuteNonQuery();
-				var result_2 = _cmd.ExecuteNonQuery();
-			}
-			return;
-		}
-		
-		public IEnumerable<Abonent> GetList()
-		{
-			using (_cmd = _connection.CreateCommand())
-			{
-				_cmd.CommandText = "SELECT * FROM Abonent";
-				using (_reader = _cmd.ExecuteReader())
-				{
-					while (_reader.Read())
-					{
-						yield return new Abonent
-						{
-							Code = (int)_reader["AbonentCode"],
-							AddressCode = (int)_reader["ClientAdress"],
-							FirstName = (string)_reader["FirstName"],
-							LastName = (string)_reader["SecondName"],
-							MidName = (string)_reader["Patronymic"],
-							BirthDate = (DateTime)_reader["BirthDay"]
-						};
-					}
-				}
-			}
-		}
-
-		private IEnumerable<int> GetAwardIdList(int id)
-		{
-			using (_cmd = _connection.CreateCommand())
-			{
-				_cmd.CommandText = String.Format("SELECT AwardID FROM Rewardings WHERE UserID = @id");
-				_cmd.Parameters.Add("@id", SqlDbType.Int).Value = id;
-
-				using (_reader = _cmd.ExecuteReader())
-				{
-					while (_reader.Read())
-						yield return (int)_reader["AwardID"];
-				}
-			}
-		}
-
 		public void Dispose()
 		{
 			if (_connection != null)

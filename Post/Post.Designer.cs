@@ -34,8 +34,8 @@
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.dgwAbonents = new System.Windows.Forms.DataGridView();
-			this.button4 = new System.Windows.Forms.Button();
-			this.button3 = new System.Windows.Forms.Button();
+			this.btnAbonentRemove = new System.Windows.Forms.Button();
+			this.btnAbonentChange = new System.Windows.Forms.Button();
 			this.btnAbonentAdd = new System.Windows.Forms.Button();
 			this.btnAbonentsShow = new System.Windows.Forms.Button();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -109,8 +109,8 @@
 			// 
 			// splitContainer1.Panel2
 			// 
-			this.splitContainer1.Panel2.Controls.Add(this.button4);
-			this.splitContainer1.Panel2.Controls.Add(this.button3);
+			this.splitContainer1.Panel2.Controls.Add(this.btnAbonentRemove);
+			this.splitContainer1.Panel2.Controls.Add(this.btnAbonentChange);
 			this.splitContainer1.Panel2.Controls.Add(this.btnAbonentAdd);
 			this.splitContainer1.Panel2.Controls.Add(this.btnAbonentsShow);
 			this.splitContainer1.Size = new System.Drawing.Size(873, 408);
@@ -129,23 +129,25 @@
 			this.dgwAbonents.Size = new System.Drawing.Size(873, 354);
 			this.dgwAbonents.TabIndex = 0;
 			// 
-			// button4
+			// btnAbonentRemove
 			// 
-			this.button4.Location = new System.Drawing.Point(248, 3);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(75, 23);
-			this.button4.TabIndex = 3;
-			this.button4.Text = "button4";
-			this.button4.UseVisualStyleBackColor = true;
+			this.btnAbonentRemove.Location = new System.Drawing.Point(248, 3);
+			this.btnAbonentRemove.Name = "btnAbonentRemove";
+			this.btnAbonentRemove.Size = new System.Drawing.Size(75, 23);
+			this.btnAbonentRemove.TabIndex = 3;
+			this.btnAbonentRemove.Text = "Remove";
+			this.btnAbonentRemove.UseVisualStyleBackColor = true;
+			this.btnAbonentRemove.Click += new System.EventHandler(this.BtnAbonentRemove_Click);
 			// 
-			// button3
+			// btnAbonentChange
 			// 
-			this.button3.Location = new System.Drawing.Point(167, 3);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(75, 23);
-			this.button3.TabIndex = 2;
-			this.button3.Text = "button3";
-			this.button3.UseVisualStyleBackColor = true;
+			this.btnAbonentChange.Location = new System.Drawing.Point(167, 3);
+			this.btnAbonentChange.Name = "btnAbonentChange";
+			this.btnAbonentChange.Size = new System.Drawing.Size(75, 23);
+			this.btnAbonentChange.TabIndex = 2;
+			this.btnAbonentChange.Text = "Change";
+			this.btnAbonentChange.UseVisualStyleBackColor = true;
+			this.btnAbonentChange.Click += new System.EventHandler(this.BtnAbonentChange_Click);
 			// 
 			// btnAbonentAdd
 			// 
@@ -259,8 +261,8 @@
 		private System.Windows.Forms.TabPage tabPage5;
 		private System.Windows.Forms.TabPage tabPage6;
 		private System.Windows.Forms.TabPage tabPage7;
-		private System.Windows.Forms.Button button4;
-		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.Button btnAbonentRemove;
+		private System.Windows.Forms.Button btnAbonentChange;
 		private System.Windows.Forms.Button btnAbonentAdd;
 		private System.Windows.Forms.Button btnAbonentsShow;
 	}

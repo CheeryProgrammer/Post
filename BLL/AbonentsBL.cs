@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DAL.Abonents;
 using Entities;
 
@@ -26,16 +24,26 @@ namespace BLL
 			return res;
 		}
 
-		public void Dispose()
-		{
-			if (_abonents != null)
-				(_abonents as AbonentsSQL).Dispose();
-		}
-
 		public void Add(Abonent newAbonent)
 		{
 			newAbonent.Code = ++top;
 			_abonents.Add(newAbonent);
+		}
+
+		public void Update(Abonent abonent)
+		{
+			_abonents.Update(abonent);
+		}
+
+		public void Remove(int code)
+		{
+			_abonents.Remove(code);
+		}
+
+		public void Dispose()
+		{
+			if (_abonents != null)
+				(_abonents as AbonentsSQL).Dispose();
 		}
 	}
 }

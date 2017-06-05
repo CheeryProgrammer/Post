@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLL;
 using Entities;
@@ -16,8 +9,7 @@ namespace Post
 	{
 		SortableBindingList<Abonent> abonents;
 		AbonentsBL _abonents = new AbonentsBL();
-
-		Random rnd = new Random();
+		
 		public Post()
 		{
 			InitializeComponent();
@@ -25,14 +17,18 @@ namespace Post
 
 		private void Post_Load(object sender, EventArgs e)
 		{
+			LoadAbonents();
+		}
+
+		private void LoadAbonents()
+		{
 			abonents = new SortableBindingList<Abonent>(_abonents.GetList());
 			dgwAbonents.DataSource = abonents;
 		}
 
 		private void BtnAbonentsShow_Click(object sender, EventArgs e)
 		{
-			abonents = new SortableBindingList<Abonent>(_abonents.GetList());
-			dgwAbonents.DataSource = abonents;
+			LoadAbonents();
 		}
 
 		private void BtnAbonentAdd_Click(object sender, EventArgs e)
@@ -45,6 +41,40 @@ namespace Post
 			Abonent newAbonent = null;
 			if (new AbonentForm(ref newAbonent).ShowDialog() == DialogResult.OK)
 				_abonents.Add(newAbonent);
+		}
+
+		private void BtnAbonentChange_Click(object sender, EventArgs e)
+		{
+			if (dgwAbonents.SelectedCells.Count > 0)
+				ChangeAbonent(dgwAbonents.SelectedCells[0].RowIndex);
+		}
+
+		private void ChangeAbonent(int index)
+		{
+			var abonent = new Abonent();
+			abonent.Code = Convert.ToInt32(dgwAbonents.Rows[index].Cells[0].Value);
+			abonent.AddressCode = Convert.ToInt32(dgwAbonents.Rows[index].Cells[1].Value);
+			abonent.FirstName = Convert.ToString(dgwAbonents.Rows[index].Cells[2].Value);
+			abonent.LastName = Convert.ToString(dgwAbonents.Rows[index].Cells[3].Value);
+			abonent.MidName = Convert.ToString(dgwAbonents.Rows[index].Cells[4].Value);
+			abonent.BirthDate = Convert.ToDateTime(dgwAbonents.Rows[index].Cells[5].Value);
+
+			if (new AbonentForm(ref abonent).ShowDialog() == DialogResult.OK)
+				_abonents.Update(abonent);
+
+			LoadAbonents();
+		}
+
+		private void BtnAbonentRemove_Click(object sender, EventArgs e)
+		{
+			if (dgwAbonents.SelectedCells.Count > 0)
+				RemoveAbonent(dgwAbonents.SelectedCells[0].RowIndex);
+		}
+
+		private void RemoveAbonent(int rowIndex)
+		{
+			_abonents.Remove(Convert.ToInt32(dgwAbonents.Rows[rowIndex].Cells[0].Value));
+			LoadAbonents();
 		}
 	}
 }
