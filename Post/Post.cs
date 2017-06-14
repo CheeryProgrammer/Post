@@ -9,7 +9,9 @@ namespace Post
 	{
 		SortableBindingList<Abonent> abonents;
 		AbonentsBL _abonents = new AbonentsBL();
-		
+		SortableBindingList<Address> addresses;
+		AddressesBL _addresses = new AddressesBL();
+
 		public Post()
 		{
 			InitializeComponent();
@@ -18,6 +20,13 @@ namespace Post
 		private void Post_Load(object sender, EventArgs e)
 		{
 			LoadAbonents();
+			LoadAddresses();
+		}
+
+		private void LoadAddresses()
+		{
+			addresses = new SortableBindingList<Address>(_addresses.GetList());
+			dgwAddresses.DataSource = addresses;
 		}
 
 		private void LoadAbonents()

@@ -56,6 +56,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mails\MailsSQL.cs" />
+    <Compile Include="Mails\IMailDAO.cs" />
+    <Compile Include="Addresses\AddressesSQL.cs" />
+    <Compile Include="Addresses\IAddressDAO.cs" />
+    <Compile Include="Subscriptions\SubscriptionsSQL.cs" />
+    <Compile Include="Subscriptions\ISubscriptionDAO.cs" />
     <Compile Include="Abonents\AbonentsSQL.cs" />
     <Compile Include="Abonents\IAbonentDAO.cs" />
     <Compile Include="Database\Config.cs" />

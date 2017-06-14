@@ -52,7 +52,6 @@
     <Compile Include="AbonentForm.Designer.cs">
       <DependentUpon>AbonentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Adress.cs" />
     <Compile Include="Post.cs">
       <SubType>Form</SubType>
     </Compile>
