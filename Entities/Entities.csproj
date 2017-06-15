@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Subscription.cs" />
+    <Compile Include="Mail.cs" />
     <Compile Include="Abonent.cs" />
     <Compile Include="Address.cs" />
     <Compile Include="Properties\Annotations.cs" />

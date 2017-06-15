@@ -7,13 +7,13 @@ using Entities;
 
 namespace DAL.Mails
 {
-	public class MailssSQL : IMailDAO
+	public class MailsSQL : IMailDAO
 	{
 		private SqlConnection _connection;
 		private SqlCommand _cmd;
 		private SqlDataReader _reader;
 
-		public MailssSQL()
+		public MailsSQL()
 		{
 			InitConnection();
 		}
@@ -31,71 +31,58 @@ namespace DAL.Mails
 				InitConnection();
 		}
 
-		public IEnumerable<Abonent> GetList()
+		public IEnumerable<Mail> GetList()
 		{
 			using (_cmd = _connection.CreateCommand())
 			{
-				_cmd.CommandText = "SELECT * FROM Abonent";
+				_cmd.CommandText = "SELECT * FROM Mail";
 				using (_reader = _cmd.ExecuteReader())
 				{
 					while (_reader.Read())
 					{
-						yield return new Abonent
+						yield return new Mail
 						{
-							Code = (int)_reader["AbonentCode"],
-							AddressCode = (int)_reader["ClientAdress"],
-							FirstName = (string)_reader["FirstName"],
-							LastName = (string)_reader["SecondName"],
-							MidName = (string)_reader["Patronymic"],
-							BirthDate = (DateTime)_reader["BirthDay"]
+							Code = (int)_reader["MailCode"],
+							TypeMail = (int)_reader["TypeMail"],
+							Sender = (int)_reader["Sender"],
+							Reciever = (int)_reader["Reciever"],
 						};
 					}
 				}
 			}
 		}
 
-		public int Add(Abonent abonent)
+		public int Add(Mail mail)
 		{
 			using (_cmd = _connection.CreateCommand())
 			{
-				_cmd.CommandText = "INSERT INTO Abonent(ClientAdress, SecondName, FirstName, Patronymic, BirthDay, AbonentCode)" +
-								   "VALUES (@addressCode, @lastname, @firstname, @midname, @birthdate, @code);";
-				_cmd.Parameters.Add(new SqlParameter("@addressCode", SqlDbType.Int));
-				_cmd.Parameters.Add(new SqlParameter("@lastname", SqlDbType.NVarChar, 100));
-				_cmd.Parameters.Add(new SqlParameter("@firstname", SqlDbType.NVarChar, 100));
-				_cmd.Parameters.Add(new SqlParameter("@midname", SqlDbType.NVarChar, 100));
-				_cmd.Parameters.Add(new SqlParameter("@birthdate", SqlDbType.DateTime));
-				_cmd.Parameters.Add(new SqlParameter("@code", SqlDbType.Int));
+				_cmd.CommandText = "INSERT INTO Mail(TypeMail, Sender, Reciever)" +
+								   "VALUES (@typeMail, @sender, @reciever);";
+				_cmd.Parameters.Add(new SqlParameter("@typeMail", SqlDbType.Int));
+				_cmd.Parameters.Add(new SqlParameter("@sender", SqlDbType.Int));
+				_cmd.Parameters.Add(new SqlParameter("@reciever", SqlDbType.Int));
 
 				_cmd.Prepare();
 
-				_cmd.Parameters[0].Value = abonent.AddressCode;
-				_cmd.Parameters[1].Value = abonent.LastName;
-				_cmd.Parameters[2].Value = abonent.FirstName;
-				_cmd.Parameters[3].Value = abonent.MidName;
-				_cmd.Parameters[4].Value = abonent.BirthDate;
-				_cmd.Parameters[5].Value = abonent.Code;
+				_cmd.Parameters[0].Value = mail.TypeMail;
+				_cmd.Parameters[1].Value = mail.Sender;
+				_cmd.Parameters[2].Value = mail.Reciever;
 
 				_cmd.ExecuteNonQuery();
 			}
-			return abonent.Code;
+			return mail.Code;
 		}
 
-		public void Update(Abonent editAbonent)
+		public void Update(Mail editMail)
 		{
 			using (_cmd = _connection.CreateCommand())
 			{
-				_cmd.CommandText = "UPDATE Abonent SET ClientAdress=@addressCode, " +
-				                   "SecondName=@lastname, FirstName=@firstname, " +
-				                   "Patronymic=@midname, BirthDay=@birthdate " +
-				                   "WHERE AbonentCode = @code;";
+				_cmd.CommandText = "UPDATE Mail SET TypeMail=@typeMail, " +
+				                   "Sender=@sender, Reciever=@reciever";
 
-				_cmd.Parameters.Add(new SqlParameter("@addressCode", SqlDbType.Int)).Value = editAbonent.AddressCode;
-				_cmd.Parameters.Add(new SqlParameter("@lastname", SqlDbType.NVarChar, 100)).Value = editAbonent.LastName;
-				_cmd.Parameters.Add(new SqlParameter("@firstname", SqlDbType.NVarChar, 100)).Value = editAbonent.FirstName;
-				_cmd.Parameters.Add(new SqlParameter("@midname", SqlDbType.NVarChar, 100)).Value = editAbonent.MidName;
-				_cmd.Parameters.Add(new SqlParameter("@birthdate", SqlDbType.DateTime)).Value = editAbonent.BirthDate;
-				_cmd.Parameters.Add(new SqlParameter("@code", SqlDbType.Int)).Value = editAbonent.Code;
+				_cmd.Parameters.Add(new SqlParameter("@typeMail", SqlDbType.Int)).Value = editMail.TypeMail;
+				_cmd.Parameters.Add(new SqlParameter("@sender", SqlDbType.Int)).Value = editMail.Sender;
+				_cmd.Parameters.Add(new SqlParameter("@reciever", SqlDbType.Int)).Value = editMail.Reciever;
 
 				_cmd.Prepare();
 				_cmd.ExecuteNonQuery();
@@ -106,15 +93,15 @@ namespace DAL.Mails
 		{
 			using (_cmd = _connection.CreateCommand())
 			{
-				_cmd.CommandText = "DELETE FROM Abonent WHERE AbonentCode = @code;";
+				_cmd.CommandText = "DELETE FROM Mail WHERE MailCode = @code;";
 				_cmd.Parameters.Add("@code", SqlDbType.Int).Value = code;
 				_cmd.ExecuteNonQuery();
 			}
 		}
 
-		public void Remove(Abonent abonent)
+		public void Remove(Mail mail)
 		{
-			Remove(abonent.Code);
+			Remove(mail.Code);
 		}
 		
 		public void Dispose()

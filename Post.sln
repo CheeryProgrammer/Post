@@ -12,6 +12,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Queries", "Queries", "{537EE4F8-445A-495C-8735-E782FA8B7643}"
 	ProjectSection(SolutionItems) = preProject
 		Queries\dbo.AddAbonentStoredProcedure.sql = Queries\dbo.AddAbonentStoredProcedure.sql
+		Queries\PostDB.sql = Queries\PostDB.sql
+		Queries\testdata.sql = Queries\testdata.sql
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{DFD6B5E5-4BFC-46A8-A376-EC7681130E30}"

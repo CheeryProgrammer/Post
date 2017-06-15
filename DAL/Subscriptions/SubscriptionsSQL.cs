@@ -31,71 +31,64 @@ namespace DAL.Subscriprions
 				InitConnection();
 		}
 
-		public IEnumerable<Abonent> GetList()
+		public IEnumerable<Subscription> GetList()
 		{
 			using (_cmd = _connection.CreateCommand())
 			{
-				_cmd.CommandText = "SELECT * FROM Abonent";
+				_cmd.CommandText = "SELECT * FROM Subscribe";
 				using (_reader = _cmd.ExecuteReader())
 				{
 					while (_reader.Read())
 					{
-						yield return new Abonent
+						yield return new Subscription
 						{
-							Code = (int)_reader["AbonentCode"],
-							AddressCode = (int)_reader["ClientAdress"],
-							FirstName = (string)_reader["FirstName"],
-							LastName = (string)_reader["SecondName"],
-							MidName = (string)_reader["Patronymic"],
-							BirthDate = (DateTime)_reader["BirthDay"]
+							Code = (decimal)_reader["Code"],
+							EditionCode = (string)_reader["Edition"],
+							Abonent = (int)_reader["Abonent"],
+							Period = (int)_reader["Period"],
+							Cost = (decimal)_reader["Cost"],
 						};
 					}
 				}
 			}
 		}
 
-		public int Add(Abonent abonent)
+		public int Add(Subscription subscription)
 		{
 			using (_cmd = _connection.CreateCommand())
 			{
-				_cmd.CommandText = "INSERT INTO Abonent(ClientAdress, SecondName, FirstName, Patronymic, BirthDay, AbonentCode)" +
-								   "VALUES (@addressCode, @lastname, @firstname, @midname, @birthdate, @code);";
-				_cmd.Parameters.Add(new SqlParameter("@addressCode", SqlDbType.Int));
-				_cmd.Parameters.Add(new SqlParameter("@lastname", SqlDbType.NVarChar, 100));
-				_cmd.Parameters.Add(new SqlParameter("@firstname", SqlDbType.NVarChar, 100));
-				_cmd.Parameters.Add(new SqlParameter("@midname", SqlDbType.NVarChar, 100));
-				_cmd.Parameters.Add(new SqlParameter("@birthdate", SqlDbType.DateTime));
-				_cmd.Parameters.Add(new SqlParameter("@code", SqlDbType.Int));
+				_cmd.CommandText = "INSERT INTO Subscribe(Edition, Abonent, Period, Cost)" +
+								   "VALUES (@edition, @abonent, @period, @cost);";
+				_cmd.Parameters.Add(new SqlParameter("@edition", SqlDbType.VarChar, 20));
+				_cmd.Parameters.Add(new SqlParameter("@abonent", SqlDbType.Int));
+				_cmd.Parameters.Add(new SqlParameter("@period", SqlDbType.Int));
+				_cmd.Parameters.Add(new SqlParameter("@cost", SqlDbType.Money));
 
 				_cmd.Prepare();
 
-				_cmd.Parameters[0].Value = abonent.AddressCode;
-				_cmd.Parameters[1].Value = abonent.LastName;
-				_cmd.Parameters[2].Value = abonent.FirstName;
-				_cmd.Parameters[3].Value = abonent.MidName;
-				_cmd.Parameters[4].Value = abonent.BirthDate;
-				_cmd.Parameters[5].Value = abonent.Code;
+				_cmd.Parameters[0].Value = subscription.EditionCode;
+				_cmd.Parameters[1].Value = subscription.Abonent;
+				_cmd.Parameters[2].Value = subscription.Period;
+				_cmd.Parameters[5].Value = subscription.Cost;
 
 				_cmd.ExecuteNonQuery();
 			}
-			return abonent.Code;
+			return Convert.ToInt32(subscription.Code);
 		}
 
-		public void Update(Abonent editAbonent)
+		public void Update(Subscription editSubscription)
 		{
 			using (_cmd = _connection.CreateCommand())
 			{
-				_cmd.CommandText = "UPDATE Abonent SET ClientAdress=@addressCode, " +
-				                   "SecondName=@lastname, FirstName=@firstname, " +
-				                   "Patronymic=@midname, BirthDay=@birthdate " +
-				                   "WHERE AbonentCode = @code;";
+				_cmd.CommandText = "UPDATE Subscribe SET Edition=@edition, " +
+								   "Abonent=@abonent, Period=@period, " +
+								   "Cost=@cost";
 
-				_cmd.Parameters.Add(new SqlParameter("@addressCode", SqlDbType.Int)).Value = editAbonent.AddressCode;
-				_cmd.Parameters.Add(new SqlParameter("@lastname", SqlDbType.NVarChar, 100)).Value = editAbonent.LastName;
-				_cmd.Parameters.Add(new SqlParameter("@firstname", SqlDbType.NVarChar, 100)).Value = editAbonent.FirstName;
-				_cmd.Parameters.Add(new SqlParameter("@midname", SqlDbType.NVarChar, 100)).Value = editAbonent.MidName;
-				_cmd.Parameters.Add(new SqlParameter("@birthdate", SqlDbType.DateTime)).Value = editAbonent.BirthDate;
-				_cmd.Parameters.Add(new SqlParameter("@code", SqlDbType.Int)).Value = editAbonent.Code;
+
+				_cmd.Parameters.Add(new SqlParameter("@edition", SqlDbType.VarChar, 20)).Value = editSubscription.EditionCode;
+				_cmd.Parameters.Add(new SqlParameter("@abonent", SqlDbType.Int)).Value = editSubscription.Abonent;
+				_cmd.Parameters.Add(new SqlParameter("@period", SqlDbType.Int)).Value = editSubscription.Period;
+				_cmd.Parameters.Add(new SqlParameter("@cost", SqlDbType.Money)).Value = editSubscription.Cost;
 
 				_cmd.Prepare();
 				_cmd.ExecuteNonQuery();
@@ -106,17 +99,17 @@ namespace DAL.Subscriprions
 		{
 			using (_cmd = _connection.CreateCommand())
 			{
-				_cmd.CommandText = "DELETE FROM Abonent WHERE AbonentCode = @code;";
+				_cmd.CommandText = "DELETE FROM Subscribe WHERE Code = @code;";
 				_cmd.Parameters.Add("@code", SqlDbType.Int).Value = code;
 				_cmd.ExecuteNonQuery();
 			}
 		}
 
-		public void Remove(Abonent abonent)
+		public void Remove(Subscription subscription)
 		{
-			Remove(abonent.Code);
+			Remove(Convert.ToInt32(subscription.Code));
 		}
-		
+
 		public void Dispose()
 		{
 			if (_connection != null)

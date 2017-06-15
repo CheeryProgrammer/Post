@@ -4,10 +4,10 @@ namespace DAL.Subscriprions
 {
 	public interface ISubscriprionDAO
 	{
-		int Add(Entities.Abonent abonent);
-		void Update(Entities.Abonent editAbonent);
-		void Remove(Entities.Abonent abonent);
-		IEnumerable<Entities.Abonent> GetList();
+		int Add(Entities.Subscription subscription);
+		void Update(Entities.Subscription editSubscription);
+		void Remove(Entities.Subscription subscription);
+		IEnumerable<Entities.Subscription> GetList();
 		void Remove(int code);
 	}
 }

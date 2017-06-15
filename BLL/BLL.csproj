@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MailBL.cs" />
+    <Compile Include="SubscriptionsBL.cs" />
     <Compile Include="AddressesBL.cs" />
     <Compile Include="AbonentsBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

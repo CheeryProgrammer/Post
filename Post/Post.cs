@@ -11,6 +11,10 @@ namespace Post
 		AbonentsBL _abonents = new AbonentsBL();
 		SortableBindingList<Address> addresses;
 		AddressesBL _addresses = new AddressesBL();
+		SortableBindingList<Mail> mails;
+		MailsBL _mails = new MailsBL();
+		SortableBindingList<Subscription> subscriptions;
+		SubscriptionsBL _subscriptions = new SubscriptionsBL();
 
 		public Post()
 		{
@@ -21,6 +25,20 @@ namespace Post
 		{
 			LoadAbonents();
 			LoadAddresses();
+			LoadSubscriptions();
+			LoadMails();
+		}
+
+		private void LoadMails()
+		{
+			mails = new SortableBindingList<Mail>(_mails.GetList());
+			dgwMails.DataSource = mails;
+		}
+
+		private void LoadSubscriptions()
+		{
+			subscriptions = new SortableBindingList<Subscription>(_subscriptions.GetList());
+			dgwSubscriptions.DataSource = subscriptions;
 		}
 
 		private void LoadAddresses()
@@ -84,6 +102,14 @@ namespace Post
 		{
 			_abonents.Remove(Convert.ToInt32(dgwAbonents.Rows[rowIndex].Cells[0].Value));
 			LoadAbonents();
+		}
+
+		private void Post_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			_abonents?.Dispose();
+			_subscriptions?.Dispose();
+			_addresses?.Dispose();
+			_mails?.Dispose();
 		}
 	}
 }

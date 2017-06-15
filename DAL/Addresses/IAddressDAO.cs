@@ -4,9 +4,9 @@ namespace DAL.Addresses
 {
 	public interface IAddressDAO
 	{
-		int Add(Entities.Address abonent);
-		void Update(Entities.Address editAbonent);
-		void Remove(Entities.Address abonent);
+		int Add(Entities.Address address);
+		void Update(Entities.Address editAddress);
+		void Remove(Entities.Address address);
 		IEnumerable<Entities.Address> GetList();
 		void Remove(int code);
 	}

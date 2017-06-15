@@ -39,29 +39,29 @@
 			this.btnAbonentAdd = new System.Windows.Forms.Button();
 			this.btnAbonentsShow = new System.Windows.Forms.Button();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.tabPage3 = new System.Windows.Forms.TabPage();
-			this.tabPage4 = new System.Windows.Forms.TabPage();
-			this.tabPage5 = new System.Windows.Forms.TabPage();
-			this.tabPage6 = new System.Windows.Forms.TabPage();
-			this.tabPage7 = new System.Windows.Forms.TabPage();
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
 			this.dgwSubscriptions = new System.Windows.Forms.DataGridView();
-			this.btnLoadSubscriptions = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
+			this.btnLoadSubscriptions = new System.Windows.Forms.Button();
+			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.splitContainer3 = new System.Windows.Forms.SplitContainer();
 			this.dgwAddresses = new System.Windows.Forms.DataGridView();
 			this.button4 = new System.Windows.Forms.Button();
 			this.button5 = new System.Windows.Forms.Button();
 			this.button6 = new System.Windows.Forms.Button();
 			this.btnLoadAddresses = new System.Windows.Forms.Button();
+			this.tabPage4 = new System.Windows.Forms.TabPage();
 			this.splitContainer4 = new System.Windows.Forms.SplitContainer();
 			this.dgwMails = new System.Windows.Forms.DataGridView();
 			this.button7 = new System.Windows.Forms.Button();
 			this.button8 = new System.Windows.Forms.Button();
 			this.button9 = new System.Windows.Forms.Button();
 			this.btnLoadMails = new System.Windows.Forms.Button();
+			this.tabPage5 = new System.Windows.Forms.TabPage();
+			this.tabPage6 = new System.Windows.Forms.TabPage();
+			this.tabPage7 = new System.Windows.Forms.TabPage();
 			this.statusStrip1.SuspendLayout();
 			this.tcLists.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -71,18 +71,18 @@
 			this.splitContainer1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgwAbonents)).BeginInit();
 			this.tabPage2.SuspendLayout();
-			this.tabPage3.SuspendLayout();
-			this.tabPage4.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
 			this.splitContainer2.Panel1.SuspendLayout();
 			this.splitContainer2.Panel2.SuspendLayout();
 			this.splitContainer2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgwSubscriptions)).BeginInit();
+			this.tabPage3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
 			this.splitContainer3.Panel1.SuspendLayout();
 			this.splitContainer3.Panel2.SuspendLayout();
 			this.splitContainer3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgwAddresses)).BeginInit();
+			this.tabPage4.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
 			this.splitContainer4.Panel1.SuspendLayout();
 			this.splitContainer4.Panel2.SuspendLayout();
@@ -216,53 +216,6 @@
 			this.tabPage2.Text = "Subscriptions";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
-			// tabPage3
-			// 
-			this.tabPage3.Controls.Add(this.splitContainer3);
-			this.tabPage3.Location = new System.Drawing.Point(4, 22);
-			this.tabPage3.Name = "tabPage3";
-			this.tabPage3.Size = new System.Drawing.Size(879, 414);
-			this.tabPage3.TabIndex = 2;
-			this.tabPage3.Text = "Addresses";
-			this.tabPage3.UseVisualStyleBackColor = true;
-			// 
-			// tabPage4
-			// 
-			this.tabPage4.Controls.Add(this.splitContainer4);
-			this.tabPage4.Location = new System.Drawing.Point(4, 22);
-			this.tabPage4.Name = "tabPage4";
-			this.tabPage4.Size = new System.Drawing.Size(879, 414);
-			this.tabPage4.TabIndex = 3;
-			this.tabPage4.Text = "Mails";
-			this.tabPage4.UseVisualStyleBackColor = true;
-			// 
-			// tabPage5
-			// 
-			this.tabPage5.Location = new System.Drawing.Point(4, 22);
-			this.tabPage5.Name = "tabPage5";
-			this.tabPage5.Size = new System.Drawing.Size(879, 414);
-			this.tabPage5.TabIndex = 4;
-			this.tabPage5.Text = "Authors";
-			this.tabPage5.UseVisualStyleBackColor = true;
-			// 
-			// tabPage6
-			// 
-			this.tabPage6.Location = new System.Drawing.Point(4, 22);
-			this.tabPage6.Name = "tabPage6";
-			this.tabPage6.Size = new System.Drawing.Size(879, 414);
-			this.tabPage6.TabIndex = 5;
-			this.tabPage6.Text = "Publishers";
-			this.tabPage6.UseVisualStyleBackColor = true;
-			// 
-			// tabPage7
-			// 
-			this.tabPage7.Location = new System.Drawing.Point(4, 22);
-			this.tabPage7.Name = "tabPage7";
-			this.tabPage7.Size = new System.Drawing.Size(879, 414);
-			this.tabPage7.TabIndex = 6;
-			this.tabPage7.Text = "Editions";
-			this.tabPage7.UseVisualStyleBackColor = true;
-			// 
 			// splitContainer2
 			// 
 			this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -296,15 +249,6 @@
 			this.dgwSubscriptions.Size = new System.Drawing.Size(873, 359);
 			this.dgwSubscriptions.TabIndex = 0;
 			// 
-			// btnLoadSubscriptions
-			// 
-			this.btnLoadSubscriptions.Location = new System.Drawing.Point(5, 3);
-			this.btnLoadSubscriptions.Name = "btnLoadSubscriptions";
-			this.btnLoadSubscriptions.Size = new System.Drawing.Size(75, 23);
-			this.btnLoadSubscriptions.TabIndex = 0;
-			this.btnLoadSubscriptions.Text = "Load";
-			this.btnLoadSubscriptions.UseVisualStyleBackColor = true;
-			// 
 			// button1
 			// 
 			this.button1.Enabled = false;
@@ -334,6 +278,25 @@
 			this.button3.TabIndex = 4;
 			this.button3.Text = "Add";
 			this.button3.UseVisualStyleBackColor = true;
+			// 
+			// btnLoadSubscriptions
+			// 
+			this.btnLoadSubscriptions.Location = new System.Drawing.Point(5, 3);
+			this.btnLoadSubscriptions.Name = "btnLoadSubscriptions";
+			this.btnLoadSubscriptions.Size = new System.Drawing.Size(75, 23);
+			this.btnLoadSubscriptions.TabIndex = 0;
+			this.btnLoadSubscriptions.Text = "Load";
+			this.btnLoadSubscriptions.UseVisualStyleBackColor = true;
+			// 
+			// tabPage3
+			// 
+			this.tabPage3.Controls.Add(this.splitContainer3);
+			this.tabPage3.Location = new System.Drawing.Point(4, 22);
+			this.tabPage3.Name = "tabPage3";
+			this.tabPage3.Size = new System.Drawing.Size(879, 414);
+			this.tabPage3.TabIndex = 2;
+			this.tabPage3.Text = "Addresses";
+			this.tabPage3.UseVisualStyleBackColor = true;
 			// 
 			// splitContainer3
 			// 
@@ -407,6 +370,16 @@
 			this.btnLoadAddresses.Text = "Load";
 			this.btnLoadAddresses.UseVisualStyleBackColor = true;
 			// 
+			// tabPage4
+			// 
+			this.tabPage4.Controls.Add(this.splitContainer4);
+			this.tabPage4.Location = new System.Drawing.Point(4, 22);
+			this.tabPage4.Name = "tabPage4";
+			this.tabPage4.Size = new System.Drawing.Size(879, 414);
+			this.tabPage4.TabIndex = 3;
+			this.tabPage4.Text = "Mails";
+			this.tabPage4.UseVisualStyleBackColor = true;
+			// 
 			// splitContainer4
 			// 
 			this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -479,6 +452,33 @@
 			this.btnLoadMails.Text = "Load";
 			this.btnLoadMails.UseVisualStyleBackColor = true;
 			// 
+			// tabPage5
+			// 
+			this.tabPage5.Location = new System.Drawing.Point(4, 22);
+			this.tabPage5.Name = "tabPage5";
+			this.tabPage5.Size = new System.Drawing.Size(879, 414);
+			this.tabPage5.TabIndex = 4;
+			this.tabPage5.Text = "Authors";
+			this.tabPage5.UseVisualStyleBackColor = true;
+			// 
+			// tabPage6
+			// 
+			this.tabPage6.Location = new System.Drawing.Point(4, 22);
+			this.tabPage6.Name = "tabPage6";
+			this.tabPage6.Size = new System.Drawing.Size(879, 414);
+			this.tabPage6.TabIndex = 5;
+			this.tabPage6.Text = "Publishers";
+			this.tabPage6.UseVisualStyleBackColor = true;
+			// 
+			// tabPage7
+			// 
+			this.tabPage7.Location = new System.Drawing.Point(4, 22);
+			this.tabPage7.Name = "tabPage7";
+			this.tabPage7.Size = new System.Drawing.Size(879, 414);
+			this.tabPage7.TabIndex = 6;
+			this.tabPage7.Text = "Editions";
+			this.tabPage7.UseVisualStyleBackColor = true;
+			// 
 			// Post
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -488,6 +488,7 @@
 			this.Controls.Add(this.statusStrip1);
 			this.Name = "Post";
 			this.Text = "Post";
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Post_FormClosed);
 			this.Load += new System.EventHandler(this.Post_Load);
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
@@ -499,18 +500,18 @@
 			this.splitContainer1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dgwAbonents)).EndInit();
 			this.tabPage2.ResumeLayout(false);
-			this.tabPage3.ResumeLayout(false);
-			this.tabPage4.ResumeLayout(false);
 			this.splitContainer2.Panel1.ResumeLayout(false);
 			this.splitContainer2.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
 			this.splitContainer2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dgwSubscriptions)).EndInit();
+			this.tabPage3.ResumeLayout(false);
 			this.splitContainer3.Panel1.ResumeLayout(false);
 			this.splitContainer3.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
 			this.splitContainer3.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dgwAddresses)).EndInit();
+			this.tabPage4.ResumeLayout(false);
 			this.splitContainer4.Panel1.ResumeLayout(false);
 			this.splitContainer4.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
