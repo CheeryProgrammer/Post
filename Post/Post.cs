@@ -8,13 +8,13 @@ namespace Post
 	public partial class Post : Form
 	{
 		SortableBindingList<Abonent> abonents;
-		AbonentsBL _abonents = new AbonentsBL();
+		AbonentsBL _abonents;
 		SortableBindingList<Address> addresses;
-		AddressesBL _addresses = new AddressesBL();
+		AddressesBL _addresses;
 		SortableBindingList<Mail> mails;
-		MailsBL _mails = new MailsBL();
+		MailsBL _mails;
 		SortableBindingList<Subscription> subscriptions;
-		SubscriptionsBL _subscriptions = new SubscriptionsBL();
+		SubscriptionsBL _subscriptions;
 
 		public Post()
 		{
@@ -23,11 +23,44 @@ namespace Post
 
 		private void Post_Load(object sender, EventArgs e)
 		{
+			while(!InitConnection())
+				using (var form = new ErrorConnectionForm())
+					if (form.ShowDialog() != DialogResult.Retry)
+					{
+						Close();
+						break;
+					}
+			//this.reportViewer1.RefreshReport();
+		}
+
+		private bool InitConnection()
+		{
+			try
+			{
+				InitLists();
+				LoadData();
+				return true;
+			}
+			catch
+			{
+				return false;
+			}
+		}
+
+		private void LoadData()
+		{
 			LoadAbonents();
 			LoadAddresses();
 			LoadSubscriptions();
 			LoadMails();
-			this.reportViewer1.RefreshReport();
+		}
+
+		private void InitLists()
+		{
+			_abonents = new AbonentsBL();
+			_addresses = new AddressesBL();
+			_mails = new MailsBL();
+			_subscriptions = new SubscriptionsBL();
 		}
 
 		private void LoadMails()

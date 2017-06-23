@@ -49,11 +49,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbonentForm.cs">
+    <Compile Include="EntityForm\AbonentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbonentForm.Designer.cs">
+    <Compile Include="EntityForm\AbonentForm.Designer.cs">
       <DependentUpon>AbonentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorConnectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ErrorConnectionForm.Designer.cs">
+      <DependentUpon>ErrorConnectionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Post.cs">
       <SubType>Form</SubType>
@@ -63,8 +69,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AbonentForm.resx">
+    <EmbeddedResource Include="EntityForm\AbonentForm.resx">
       <DependentUpon>AbonentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ErrorConnectionForm.resx">
+      <DependentUpon>ErrorConnectionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Post.resx">
       <DependentUpon>Post.cs</DependentUpon>
