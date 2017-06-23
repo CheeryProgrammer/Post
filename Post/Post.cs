@@ -27,6 +27,7 @@ namespace Post
 			LoadAddresses();
 			LoadSubscriptions();
 			LoadMails();
+			this.reportViewer1.RefreshReport();
 		}
 
 		private void LoadMails()

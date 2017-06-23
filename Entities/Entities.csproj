@@ -40,6 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Postman.cs" />
+    <Compile Include="Region.cs" />
+    <Compile Include="MailType.cs" />
+    <Compile Include="Edition.cs" />
+    <Compile Include="Publisher.cs" />
+    <Compile Include="Author.cs" />
     <Compile Include="Subscription.cs" />
     <Compile Include="Mail.cs" />
     <Compile Include="Abonent.cs" />
